@@ -88,32 +88,25 @@ galleryRef.innerHTML = createImageElement(galleryItems);
 
 const getUrl = document.querySelector('ul.js-gallery')
 
-
-getUrl.addEventListener('click', (evt)=>{
-    evt.preventDefault();
-      if (evt.target.nodeName === 'IMG'){
-        console.log(evt.target.dataset.source);
-    } 
-})
   
 const openModal = () => ligthboxRef.classList.add('is-open');
 
-const closeModal = () => ligthboxRef.classList.remove('is-open');
+const closeModal = () => {
+  ligthboxRef.classList.remove('is-open');
+  ligthboxImageRef.src = '';
+}
    
   
 const ligthboxRef = document.querySelector('.js-lightbox');
   
 const ligthboxImageRef = document.querySelector('.lightbox__image');
   
-const closeButtonRef = document.querySelector('button[data-action="close-lightbox"]')
   
 galleryRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
       event.preventDefault();
-      event.stopPropagation();
   
       ligthboxImageRef.src = event.target.dataset.source;
-      ligthboxImageRef.dataset.source = event.target.dataset.source;
       openModal();
     }
 });
